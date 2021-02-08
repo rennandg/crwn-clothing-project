@@ -10,6 +10,11 @@ export const selectCartItems = createSelector(
 // reference selectCartItems then reference selectCart then passes the state to the state.cart object then pass to cart.cartItems function to carItems then
 // reduces then gives us our final cart items count
 
+export const selectCartHidden = createSelector(
+    [selectCart],
+    (cart) => cart.hidden
+)
+
 export const selectCartItemsCount = createSelector(
     [selectCartItems],
     cartItems => 
@@ -19,3 +24,12 @@ export const selectCartItemsCount = createSelector(
         )
 )
 // this become a memoization selector
+
+export const selectCartTotal = createSelector(
+    [selectCartItems],
+    cartItems => 
+        cartItems.reduce(
+            (accumalatedQuantity, cartItem) =>
+                accumalatedQuantity + cartItem.quantity * cartItem.price, 0
+        )
+)

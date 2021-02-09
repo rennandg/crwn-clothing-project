@@ -17,7 +17,7 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
 //quantity property get attached the first time around since this if block won't run when it's a new item!
 
 export const removeItemFromCart = (cartItems, cartItemToRemove ) => {
-  const existingCartItem = cartItem.find(
+  const existingCartItem = cartItems.find(
     cartItem => cartItem.id === cartItemToRemove.id
   )
 

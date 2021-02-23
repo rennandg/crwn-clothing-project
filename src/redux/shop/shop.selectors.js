@@ -23,3 +23,15 @@ export const selectCollection = memoize((collectionUrlParam) =>
         collections => (collections ? collections[collectionUrlParam] : null)                                  //Base on the function we pass it. it's going to run eact element from left to right in our array
     )                                      // till it find where the function return true and give then it give's back the element that returns true
 )
+
+export const selectIsCollectionFetching = createSelector(
+    [selectShop],
+    shop => shop.isFetching
+)
+
+export const selectIsCollectionsLoaded = createSelector(
+    [selectShop],
+    shop => !!shop.collections
+)
+
+// this determines and return a boolean value of whether or not our collection is null or not

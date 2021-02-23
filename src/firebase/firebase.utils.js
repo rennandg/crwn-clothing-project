@@ -69,12 +69,21 @@ const config = {
     } ,{})                                // we passed in our initial object the initial object goes to the first new collection and set the first value = to title.toLowerCase
   }
   
+  // can be use to create a backend like firebase
+  export const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+      const unsubscribe = auth.onAuthStateChanged(userAuth => {
+        unsubscribe()
+        resolve(userAuth)
+      }, reject)
+    })
+}
 
   export const auth = firebase.auth();
   export const firestore = firebase.firestore();
 
-  const provider = new firebase.auth.GoogleAuthProvider();
-  provider.setCustomParameters({ prompt: 'select_account' });
-  export const signInWithGoogle = () => auth.signInWithPopup(provider);
+  export const googleProvider = new firebase.auth.GoogleAuthProvider();
+  googleProvider.setCustomParameters({ prompt: 'select_account' });
+  export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
   export default firebase;

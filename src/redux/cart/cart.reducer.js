@@ -28,12 +28,10 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartItems: state.cartItems.filter(cartItem => cartItem.id !== action.payload.id) 
       }
-      // passing appropriate cartItem
-      // if the cartItem.id does not match the action.payload.id (the item that we want to remove) so keep it
     case CartActionTypes.CLEAR_CART:
       return {
         ...state,
-        cartItems: [],
+        cartItems: []
       }
     default:
       return state;
